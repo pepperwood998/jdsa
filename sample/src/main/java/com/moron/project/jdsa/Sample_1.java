@@ -10,7 +10,7 @@ public class Sample_1
 {
     public static void main(String[] args)
     {
-	SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+	SinglyLinkedList<Integer> sll = new SinglyLinkedList<>();
 	sll.addToHead(3);
 	sll.addToHead(1);
 	sll.addToHead(9);

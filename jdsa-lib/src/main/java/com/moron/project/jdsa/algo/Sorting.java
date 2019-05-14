@@ -84,4 +84,64 @@ public class Sorting
 	    }
 	}
     }
+    
+    public static class Advance
+    {
+	/**
+	 * This function will call the actual operation function of quicksort.
+	 * 
+	 * @param data
+	 */
+	public static <T extends Comparable<T>> void quickSort(T data[])
+	{
+	    quickSort(data, 0, data.length - 1);
+	}
+	
+	/**
+	 * <p>Choose the pivot value (the middle element in this case), split the array into 2 part,
+	 * the left contains elements with value < pivot, the right contain > pivot.
+	 * 
+	 * <p>The condition (i <= j), the equal check is for dealing with array of 2 element, 
+	 * prevent infinite loop.
+	 * 
+	 * @param data
+	 * @param left
+	 * @param right
+	 */
+	private static <T extends Comparable<T>> void quickSort(T data[], int left, int right)
+	{
+	    int i = left;
+	    int j = right;
+	    T pivot = data[(left + right) / 2];
+	    
+	    while (i < j)
+	    {
+		while (pivot.compareTo(data[i]) > 0)
+		{
+		    i++;
+		}
+		
+		while (pivot.compareTo(data[j]) < 0)
+		{
+		    j--;
+		}
+		
+		if (i <= j)
+		{
+		    swap(data, i, j);
+		    i++;
+		    j--;
+		}
+	    }
+	    
+	    if (left < j)
+	    {
+		quickSort(data, left, i);
+	    }
+	    if (i < right)
+	    {
+		quickSort(data, i, right);
+	    }
+	}
+    }
 }

@@ -140,7 +140,7 @@ public class Sorting
 
 	    if (left < j)
 	    {
-		quickSort(data, left, i);
+		quickSort(data, left, j);
 	    }
 	    if (i < right)
 	    {

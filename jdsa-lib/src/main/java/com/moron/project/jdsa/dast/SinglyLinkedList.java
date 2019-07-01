@@ -1,6 +1,8 @@
 package com.moron.project.jdsa.dast;
 
-public class SinglyLinkedList<T> {
+import java.util.Iterator;
+
+public class SinglyLinkedList<T> implements Iterable<T> {
 
 	private Node mHead;
 	private Node mTail;
@@ -103,6 +105,10 @@ public class SinglyLinkedList<T> {
 		return tmp == null;
 	}
 
+	public Node getHead() {
+		return mHead;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder res = new StringBuilder();
@@ -114,8 +120,13 @@ public class SinglyLinkedList<T> {
 		return res.toString();
 	}
 
+	@Override
+	public Iterator<T> iterator() {
+		return new SLLIterator(this);
+	}
+
 	private class Node {
-		
+
 		T mData;
 		Node mNext;
 
@@ -127,5 +138,28 @@ public class SinglyLinkedList<T> {
 			mData = data;
 			mNext = next;
 		}
+	}
+
+	private class SLLIterator implements Iterator<T> {
+
+		private Node mCurrent;
+
+		public SLLIterator(final SinglyLinkedList<T> sll) {
+			mCurrent = sll.getHead();
+		}
+
+		@Override
+		public boolean hasNext() {
+			return mCurrent != null;
+		}
+
+		@Override
+		public T next() {
+			T data = mCurrent.mData;
+			mCurrent = mCurrent.mNext;
+
+			return data;
+		}
+
 	}
 }
